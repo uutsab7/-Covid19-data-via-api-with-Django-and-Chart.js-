@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Covid19 data</title>
+</head>
+
+<body>
+    <!-- <table border="1" align="center" width="800">
+        <thead>
+            <tr>
+
+                <th>State</th>
+                <th>Active</th>
+                <th>Confirmed</th>
+                <th>Deaths</th>
+                <th>Recoveres</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for state in data.statewise %}
+            <tr>
+                <td>{{state.state}}</td>
+                <td>{{state.active}}</td>
+                <td>{{state.confirmed}}</td>
+                <td>{{state.deaths}}</td>
+                <td>{{state.recovered}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table> -->
+    <!-- barchat -->
+    <div>
+        <canvas id="myChart"></canvas>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const labels = {{labels|safe}};
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'Covid19 confirmed cases',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: {{chartdata|safe}},
+                
+            }]
+        };
+        const config = {
+            type: 'bar',
+            data: data,
+            options: {}
+        };
+        // === include 'setup' then 'config' above ===
+
+        var myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+        );
+    </script>
+</body>
+
+</html>
